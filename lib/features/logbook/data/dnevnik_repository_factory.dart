@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:burdenko/features/dnevnik/data/dnevnik_repository.dart';
 import 'package:flutter/material.dart';
 import '../../router/main.dart';
 import '../view/widgets/file_picker_screen.dart';
@@ -17,6 +16,6 @@ Future<FileSystemEntity?> _picker(files) async {
   );
 }
 
-DnevnikRepository dnevnikFactory() {
+FileDnevnikRepositoryImpl dnevnikFactory() {
   return FileDnevnikRepositoryImpl(_picker);
 }

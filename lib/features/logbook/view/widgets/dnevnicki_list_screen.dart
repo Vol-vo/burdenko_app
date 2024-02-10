@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/dnevnik/data/export_dnevnicki_general.dart';
-import 'package:burdenko/features/dnevnik/domain/dnevnik_manager.dart';
+import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class DnevnickiListScreen extends StatelessWidget {
+  DnevnickiListScreen({Key? key}) : super(key: key);
 
-  final List<DnevnichkiGeneral> dnevnickiList = [DnevnickiGastro()];
+  final List<Logbook> dnevnickiList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
+        body:
         ListView.separated(
           separatorBuilder: (context, i) => const Divider(),
           itemCount: dnevnickiList.length,

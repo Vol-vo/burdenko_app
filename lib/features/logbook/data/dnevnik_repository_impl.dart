@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:burdenko/features/dnevnik/data/dnevnik_repository.dart';
-import 'package:burdenko/features/dnevnik/models/parameter.dart';
+import 'package:burdenko/features/logbook/data/dnevnik_repository.dart';
+import 'package:burdenko/features/logbook/models/parameter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 

@@ -1,6 +1,6 @@
-import 'package:burdenko/features/dnevnik/data/dnevnik_repository.dart';
-import 'package:burdenko/features/dnevnik/data/dnevnik_repository_factory.dart';
-import 'package:burdenko/features/dnevnik/models/parameter.dart';
+import 'package:burdenko/features/logbook/data/dnevnik_repository.dart';
+import 'package:burdenko/features/logbook/data/dnevnik_repository_factory.dart';
+import 'package:burdenko/features/logbook/models/parameter.dart';
 import 'package:flutter/cupertino.dart';
 
 class DnevnikManager {

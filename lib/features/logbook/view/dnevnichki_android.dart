@@ -1,4 +1,4 @@
-import 'package:burdenko/features/dnevnik/models/parameter.dart';
+import 'package:burdenko/features/logbook/models/parameter.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 

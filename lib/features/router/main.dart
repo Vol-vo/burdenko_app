@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/dnevnik/view/main_screen.dart';
+import 'package:burdenko/features/logbook/view/main_screen.dart';
 
 const buttonColor = Color(0xff191919);
 const orangecolor = Color(0xffD9802E);

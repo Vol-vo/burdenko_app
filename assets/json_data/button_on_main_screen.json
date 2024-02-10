@@ -1,0 +1,12 @@
+[{
+    "title" : "Дневники",
+    "navigator" : "/dnevnicki_general"
+},
+{
+    "title" : "Заметки",
+    "navigator" : "/notes"
+},
+{
+    "title" : "Настройки",
+    "navigator" : "/settings"
+}]
