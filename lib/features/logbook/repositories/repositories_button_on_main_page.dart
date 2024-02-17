@@ -5,13 +5,13 @@ import 'package:flutter/services.dart';
 
 
 class RepositoriesButtonOnMainPage{
-  Map<String, dynamic> getJsonMap(String file){
-    String jsonString = rootBundle.loadString(file) as String;
+  Future<Map<String, dynamic>> getJsonMap(String file) async {
+    String jsonString = await rootBundle.loadString(file);
     return jsonDecode(jsonString);
   }
 
-  List<ButtonOnMainPage> getButtonOnMainPage(String file) {
-    Map<String, dynamic> jsonMap = getJsonMap(file);
+  Future<List<ButtonOnMainPage>> getButtonOnMainPage(String file) async {
+    Map<String, dynamic> jsonMap = await getJsonMap(file);
     final result = jsonMap.entries.map((e) => ButtonOnMainPage.fromJson(jsonMap)).toList();
     return result;
   }

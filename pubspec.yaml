@@ -48,6 +48,8 @@ dependencies:
   file_picker: ^6.1.1
   auto_size_text: ^3.0.0
   json_annotation: ^4.8.1
+  flutter_bloc: ^8.1.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,7 +83,7 @@ flutter:
     - assets/images/Pulmo3.png
     - assets/images/Gastro.png
     - assets/images/Gastro2.png
-    - assets/json_data/button_on_main_Screen.json
+    - assets/json_data/button_on_main_screen.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
