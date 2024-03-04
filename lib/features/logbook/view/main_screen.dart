@@ -19,10 +19,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-
     buttonList = Completer();
     repository
-        .getButtonOnMainPage("assets/json_data/button_on_main_screen.json")
+        .getButtonOnMainPage('assets/json_data/button_on_main_screen.json')
         .then((value) {
       buttonList.complete(value);
     });
@@ -43,31 +42,32 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ),
-          SizedBox(width: MediaQuery.of(context).size.width, height: 10),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.1,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  // Border
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-              ),
-              child: const Text(
-                "Дневники",
-                style: TextStyle(fontSize: 40),
-              ),
-            ),
-          ),
-          Center(
             child: FutureBuilder(
                 future: buttonList.future,
                 builder: (context, state) {
                   if (!state.hasData) return const CircularProgressIndicator();
-                  return Row(
-                    children: state.data!.map((e) => Text(e.title)).toList(),
+                  return Column(
+                    children: state.data!
+                        .map((e) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                height: MediaQuery.of(context).size.height * 0.1,
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, e.navigator);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        // Border
+                                        borderRadius: BorderRadius.circular(18.0),
+                                      ),
+                                    ),
+                                    child: Text(e.title, style: const TextStyle(fontSize: 40))),
+                              ),
+                        ))
+                        .toList(),
                   );
                 }),
           ),

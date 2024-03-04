@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 
 class Dnevnichki extends StatefulWidget {
-  const Dnevnichki({Key? key}) : super(key: key);
+  const Dnevnichki({super.key});
   @override
   DnevnichkiState createState() => DnevnichkiState();
 }

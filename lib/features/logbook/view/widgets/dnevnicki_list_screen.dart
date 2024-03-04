@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 
 class DnevnickiListScreen extends StatelessWidget {
-  DnevnickiListScreen({Key? key}) : super(key: key);
+  DnevnickiListScreen({super.key});
 
   final List<Logbook> dnevnickiList = [];
 

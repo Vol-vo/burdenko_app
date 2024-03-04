@@ -5,14 +5,16 @@ import 'package:flutter/services.dart';
 
 
 class RepositoriesButtonOnMainPage{
-  Future<Map<String, dynamic>> getJsonMap(String file) async {
-    String jsonString = await rootBundle.loadString(file);
-    return jsonDecode(jsonString);
+
+
+  Future<List<ButtonOnMainPage>> getButtonOnMainPage(String fileString) async {
+    final List <dynamic> listJson = jsonDecode(await rootBundle.loadString(fileString));
+    List <ButtonOnMainPage> buttonList = [];
+    for (int i = 0; i < listJson.length; i++){
+      buttonList.add(ButtonOnMainPage(title: listJson[i]["title"], navigator: listJson[i]["navigator"]));
+    }
+    return buttonList;
   }
 
-  Future<List<ButtonOnMainPage>> getButtonOnMainPage(String file) async {
-    Map<String, dynamic> jsonMap = await getJsonMap(file);
-    final result = jsonMap.entries.map((e) => ButtonOnMainPage.fromJson(jsonMap)).toList();
-    return result;
-  }
+
 }
