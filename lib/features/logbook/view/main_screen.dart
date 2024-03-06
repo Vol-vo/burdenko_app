@@ -30,48 +30,60 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.width * 0.7,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/Panel2.jpg"),
-                fit: BoxFit.fill,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width * 0.7,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/Panel2.jpg"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
-            ),
+              SizedBox(
+                child: FutureBuilder(
+                    future: buttonList.future,
+                    builder: (context, state) {
+                      if (!state.hasData) {
+                        return const CircularProgressIndicator();
+                      }
+                      return Column(
+                        children: state.data!
+                            .map((e) => Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.1,
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, e.navigator);
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            // Border
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                          ),
+                                        ),
+                                        child: Text(e.title,
+                                            style:
+                                                const TextStyle(fontSize: 40))),
+                                  ),
+                                ))
+                            .toList(),
+                      );
+                    }),
+              ),
+            ],
           ),
-          SizedBox(
-            child: FutureBuilder(
-                future: buttonList.future,
-                builder: (context, state) {
-                  if (!state.hasData) return const CircularProgressIndicator();
-                  return Column(
-                    children: state.data!
-                        .map((e) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.9,
-                                height: MediaQuery.of(context).size.height * 0.1,
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, e.navigator);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        // Border
-                                        borderRadius: BorderRadius.circular(18.0),
-                                      ),
-                                    ),
-                                    child: Text(e.title, style: const TextStyle(fontSize: 40))),
-                              ),
-                        ))
-                        .toList(),
-                  );
-                }),
-          ),
-        ],
+        ),
       ),
     );
   }
