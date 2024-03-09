@@ -1,0 +1,26 @@
+[
+  {
+    "title" : "Пульмонология",
+    "navigator" : "/currentLogbook",
+    "image" : "",
+    "params" : []
+  },
+  {
+    "title" : "Нефрология",
+    "navigator" : "/currentLogbook",
+    "image" : "",
+    "params" : []
+  },
+  {
+    "title" : "Эндокринология",
+    "navigator" : "/currentLogbook",
+    "image" : "",
+    "params" : []
+  },
+  {
+    "title" : "Гастроэнтерология",
+    "navigator" : "/currentLogbook",
+    "image" : "",
+    "params" : []
+  }
+]

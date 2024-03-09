@@ -14,7 +14,6 @@ class DnevnickiListScreen extends StatelessWidget {
           separatorBuilder: (context, i) => const Divider(),
           itemCount: dnevnickiList.length,
           itemBuilder: (context, i) => ListTile(
-            leading: dnevnickiList[i].image,
             title: Text(dnevnickiList[i].title),
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: () => Navigator.pushNamed(context, "/dnevnicki_general",
