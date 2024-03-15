@@ -44,29 +44,32 @@ class _LogbookListScreenState extends State<LogbookListScreen> {
                     return Column(
                       children: state.data!
                           .map((e) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width:
-                          MediaQuery.of(context).size.width * 0.9,
-                          height: MediaQuery.of(context).size.height *
-                              0.1,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, e.navigator, arguments: e);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  // Border
-                                  borderRadius:
-                                  BorderRadius.circular(18.0),
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.9,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, e.navigator,
+                                            arguments: e);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          // Border
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                        ),
+                                      ),
+                                      child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(e.title,
+                                              style: const TextStyle(
+                                                  fontSize: 40)))),
                                 ),
-                              ),
-                              child: Text(e.title,
-                                  style:
-                                  const TextStyle(fontSize: 40))),
-                        ),
-                      ))
+                              ))
                           .toList(),
                     );
                   }),

@@ -29,9 +29,10 @@ class _CurrentLogbookState extends State<CurrentLogbook> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(
+        body: SafeArea(
+      child: Column(
         children: [
-          _customAppbar(),
+          CustomAppbar(name: _currentLogbook.title,),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -41,22 +42,39 @@ class _CurrentLogbookState extends State<CurrentLogbook> {
           )
         ],
       ),
-      )
-    );
+    ));
   }
+}
 
-  Widget _customAppbar() {
+class CustomAppbar extends StatelessWidget {
+  CustomAppbar({super.key, required this.name});
+
+   String name;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-            onPressed: () {}, icon: const Icon(Icons.arrow_back_ios_sharp),iconSize: 40),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_sharp),
+            iconSize: 40),
         Text(
-          _currentLogbook.title,
-          style: const TextStyle(color: Colors.indigo, fontSize: 30, fontWeight: FontWeight.w900),
+          name,
+          style: const TextStyle(
+              color: Colors.indigo, fontSize: 30, fontWeight: FontWeight.w900),
         ),
-        IconButton(onPressed: (){}, icon: const Icon(Icons.upload_file_sharp), iconSize: 40)
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.upload_file_sharp),
+            iconSize: 40)
       ],
     );
   }
 }
+
+
+
