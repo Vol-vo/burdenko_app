@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-final lightTheme = ThemeData.light();
+final lightTheme = ThemeData(
+  primaryColor: Colors.red
+);

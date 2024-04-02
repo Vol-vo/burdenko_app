@@ -14,9 +14,29 @@ class RepositoriesLogBookList {
         title: listJson[i]["title"],
         navigator: listJson[i]["navigator"],
         image: listJson[i]["image"],
-        params: List<SelectableParameter>.from(listJson[i]["params"])
+        params: await _getSelectableParameterList(listJson[i]["params"])
       ));
     }
     return logbookList;
+  }
+
+  Future<List<SelectableParameter>> _getSelectableParameterList(List<dynamic> params) async {
+    List<SelectableParameter> selectableParameterList = [];
+    for (int i = 0; i < params.length; i++){
+      selectableParameterList.add(SelectableParameter(
+          title: params[i]["title"],
+          hints: await _getHintsList(params[i]["hints"] as List<dynamic>),
+          required: params[i]["required"]
+      ));
+    }
+    return selectableParameterList;
+  }
+
+  Future<List<String>> _getHintsList(List<dynamic> params) async{
+    List<String> hintsList = [];
+    for (int i = 0; i < params.length; i++){
+      hintsList.add(params[i].toString());
+    }
+    return hintsList;
   }
 }

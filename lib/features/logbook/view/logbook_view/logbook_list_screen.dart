@@ -29,6 +29,9 @@ class _LogbookListScreenState extends State<LogbookListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Дневники", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700)),
+      ),
       body: SingleChildScrollView(
           child: SafeArea(
         child: Column(
@@ -43,33 +46,7 @@ class _LogbookListScreenState extends State<LogbookListScreen> {
                     }
                     return Column(
                       children: state.data!
-                          .map((e) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.9,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.1,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                            context, e.navigator,
-                                            arguments: e);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          // Border
-                                          borderRadius:
-                                              BorderRadius.circular(18.0),
-                                        ),
-                                      ),
-                                      child: FittedBox(
-                                          fit: BoxFit.fitWidth,
-                                          child: Text(e.title,
-                                              style: const TextStyle(
-                                                  fontSize: 40)))),
-                                ),
-                              ))
+                          .map((e) => Button(e: e))
                           .toList(),
                     );
                   }),
@@ -77,6 +54,44 @@ class _LogbookListScreenState extends State<LogbookListScreen> {
           ],
         ),
       )),
+    );
+  }
+}
+
+class Button extends StatelessWidget{
+
+  const Button({super.key, required Logbook e}) : _logbook = e;
+
+  final Logbook _logbook;
+
+  @override
+  Widget build(BuildContext context){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width:
+        MediaQuery.of(context).size.width * 0.9,
+        height:
+        MediaQuery.of(context).size.height * 0.1,
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(
+                  context, _logbook.navigator,
+                  arguments: _logbook);
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                // Border
+                borderRadius:
+                BorderRadius.circular(18.0),
+              ),
+            ),
+            child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(_logbook.title,
+                    style: const TextStyle(
+                        fontSize: 40)))),
+      ),
     );
   }
 }

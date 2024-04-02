@@ -1,3 +1,5 @@
+import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
+import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/data/logbook.dart';
@@ -29,31 +31,104 @@ class _CurrentLogbookState extends State<CurrentLogbook> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: CustomAppBar(currentLogbook: _currentLogbook),
         body: SafeArea(
-      child: Column(
-        children: [
-          CustomAppbar(name: _currentLogbook.title,),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-
-              ],
-            ),
-          )
-        ],
-      ),
-    ));
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+          child: Column(
+            children: [
+              for (var widget in _currentLogbook.params)
+                Params(parameter: widget)
+            ],
+          ),
+        )));
   }
 }
 
-class CustomAppbar extends StatelessWidget {
-  CustomAppbar({super.key, required this.name});
+class Params extends StatefulWidget {
+  Params({super.key, required this.parameter});
 
-   String name;
+  late SelectableParameter parameter;
+
+  @override
+  State<Params> createState() => _Params();
+}
+
+class _Params extends State<Params> {
+  @override
+  void initState() {
+    super.initState();
+    parameter = widget.parameter;
+  }
+
+  late SelectableParameter parameter;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      children: [
+        Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextFormField(
+                  onChanged: (newValue) {
+                    setState(() {
+                      parameter.value = newValue;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: const UnderlineInputBorder(),
+                    labelText: parameter.title,
+                  )),
+            ),
+            IconButton(
+              onPressed: (){
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    content:  Wrap(
+                      children: [
+                        for (var hint in parameter.hints)
+                          Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                  MaterialStateProperty.all(Colors.lightBlueAccent)),
+                              onPressed: () {},
+                              child: Text(hint,
+                                  style:
+                                  const TextStyle(fontSize: 20, color: Colors.black)),
+                            ),
+                          )
+                      ],
+                    ),
+                  );
+                });
+              },
+              icon: const Icon(Icons.add),
+                constraints: const BoxConstraints(maxHeight: 40),
+              iconSize: 30,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  late Logbook currentLogbook;
+
+  CustomAppBar({super.key, required this.currentLogbook});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
@@ -63,18 +138,14 @@ class CustomAppbar extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_sharp),
             iconSize: 40),
         Text(
-          name,
-          style: const TextStyle(
-              color: Colors.indigo, fontSize: 30, fontWeight: FontWeight.w900),
+          currentLogbook.title,
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
         ),
         IconButton(
             onPressed: () {},
             icon: const Icon(Icons.upload_file_sharp),
             iconSize: 40)
       ],
-    );
+    ));
   }
 }
-
-
-
