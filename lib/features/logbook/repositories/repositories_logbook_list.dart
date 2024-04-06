@@ -14,7 +14,7 @@ class RepositoriesLogBookList {
         title: listJson[i]["title"],
         navigator: listJson[i]["navigator"],
         image: listJson[i]["image"],
-        params: await _getSelectableParameterList(listJson[i]["params"])
+        params: await _getSelectableParameterList(listJson[i]["params"]),
       ));
     }
     return logbookList;
@@ -26,7 +26,8 @@ class RepositoriesLogBookList {
       selectableParameterList.add(SelectableParameter(
           title: params[i]["title"],
           hints: await _getHintsList(params[i]["hints"] as List<dynamic>),
-          required: params[i]["required"]
+          required: params[i]["required"],
+          isOneValue: params[i]["isOneValue"]
       ));
     }
     return selectableParameterList;

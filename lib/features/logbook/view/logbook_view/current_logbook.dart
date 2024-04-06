@@ -62,9 +62,11 @@ class _Params extends State<Params> {
   }
 
   late SelectableParameter parameter;
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
     return Column(
       children: [
         Row(
@@ -72,9 +74,10 @@ class _Params extends State<Params> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               child: TextFormField(
+                controller: controller,
                   onChanged: (newValue) {
                     setState(() {
-                      parameter.value = newValue;
+                      parameter.setValue(newValue);
                     });
                   },
                   decoration: InputDecoration(
@@ -95,7 +98,14 @@ class _Params extends State<Params> {
                               style: ButtonStyle(
                                   backgroundColor:
                                   MaterialStateProperty.all(Colors.lightBlueAccent)),
-                              onPressed: () {},
+                              onPressed: () {
+                                parameter.setValue(hint);
+                                controller.text = parameter.getValue();
+                                setState(() {
+                                  controller.text = parameter.getValue();
+                                });
+                                print(parameter.getValue());
+                                },
                               child: Text(hint,
                                   style:
                                   const TextStyle(fontSize: 20, color: Colors.black)),
