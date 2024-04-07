@@ -99,14 +99,14 @@ class _Params extends State<Params> {
                                   backgroundColor:
                                   MaterialStateProperty.all(Colors.lightBlueAccent)),
                               onPressed: () {
-                                parameter.setValue(hint);
+                                parameter.setValue(hint.value);
                                 controller.text = parameter.getValue();
                                 setState(() {
                                   controller.text = parameter.getValue();
                                 });
                                 print(parameter.getValue());
                                 },
-                              child: Text(hint,
+                              child: Text(hint.name,
                                   style:
                                   const TextStyle(fontSize: 20, color: Colors.black)),
                             ),

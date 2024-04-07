@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/logbook/data/button_on_main_page.dart';
+import 'package:burdenko/features/logbook/models/button_on_main_page.dart';
 import 'package:burdenko/features/logbook/repositories/repositories_button_on_main_page.dart';
 
 class MainScreen extends StatefulWidget {

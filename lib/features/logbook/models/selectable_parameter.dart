@@ -1,3 +1,5 @@
+import 'package:burdenko/features/logbook/models/hints.dart';
+
 class SelectableParameter {
   SelectableParameter({
     required this.title,
@@ -7,13 +9,7 @@ class SelectableParameter {
   });
 
   final String title;
-  final List<String> hints;
-
-  /*
-  TODO: сделать второй список со значениями, которые мы будем вставлять.
-   */
-
-
+  final List<Hints> hints;
   final bool required;
   final bool isOneValue;
   String _value = "";
