@@ -1,6 +1,6 @@
 [{
-    "title" : "Дневники",
-    "navigator" : "/logbook"
+    "title" : "Отделения",
+    "navigator" : "/department"
 },
 {
     "title" : "Заметки",

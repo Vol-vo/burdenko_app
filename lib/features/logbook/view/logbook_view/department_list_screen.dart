@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:burdenko/features/logbook/data/logbook.dart';
 import 'package:burdenko/features/logbook/repositories/repositories_logbook_list.dart';
 
-class LogbookListScreen extends StatefulWidget {
-  const LogbookListScreen({super.key});
+class DepartmentListScreen extends StatefulWidget {
+  const DepartmentListScreen({super.key});
 
   @override
-  State<LogbookListScreen> createState() => _LogbookListScreenState();
+  State<DepartmentListScreen> createState() => _DepartmentListScreenState();
 }
 
-class _LogbookListScreenState extends State<LogbookListScreen> {
+class _DepartmentListScreenState extends State<DepartmentListScreen> {
   final repository = RepositoriesLogBookList();
 
   late final Completer<List<Logbook>> logbookList;
@@ -59,11 +59,8 @@ class _LogbookListScreenState extends State<LogbookListScreen> {
 }
 
 class Button extends StatelessWidget{
-
   const Button({super.key, required Logbook e}) : _logbook = e;
-
   final Logbook _logbook;
-
   @override
   Widget build(BuildContext context){
     return Padding(

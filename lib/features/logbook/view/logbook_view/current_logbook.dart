@@ -33,15 +33,13 @@ class _CurrentLogbookState extends State<CurrentLogbook> {
     return Scaffold(
         appBar: CustomAppBar(currentLogbook: _currentLogbook),
         body: SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
-          child: Column(
+            child: Column(
             children: [
               for (var widget in _currentLogbook.params)
                 Params(parameter: widget)
             ],
           ),
-        )));
+        ));
   }
 }
 
@@ -61,29 +59,31 @@ class _Params extends State<Params> {
     parameter = widget.parameter;
   }
 
+
   late SelectableParameter parameter;
   TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
     return Column(
       children: [
         Row(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: TextFormField(
-                controller: controller,
-                  onChanged: (newValue) {
-                    setState(() {
-                      parameter.setValue(newValue);
-                    });
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: controller,
+                  onFieldSubmitted: (text){
+                    controller.text = text;
+                    parameter.setValue(text);
+                    print(parameter.getValue());
                   },
-                  decoration: InputDecoration(
-                    border: const UnderlineInputBorder(),
-                    labelText: parameter.title,
-                  )),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder()
+                  ),
+                ),
+              ),
             ),
             IconButton(
               onPressed: (){
@@ -100,11 +100,10 @@ class _Params extends State<Params> {
                                   MaterialStateProperty.all(Colors.lightBlueAccent)),
                               onPressed: () {
                                 parameter.setValue(hint.value);
-                                controller.text = parameter.getValue();
                                 setState(() {
                                   controller.text = parameter.getValue();
                                 });
-                                print(parameter.getValue());
+                                print(controller.text);
                                 },
                               child: Text(hint.name,
                                   style:
