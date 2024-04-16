@@ -3,4 +3,5 @@ export 'widgets/file_picker_screen.dart';
 export 'widgets/text_parameter_input.dart';
 export 'main_screen.dart';
 export 'logbook_view/department_list_screen.dart';
-export 'logbook_view/current_logbook.dart';
+export 'logbook_view/initial_inspection.dart';
+export 'logbook_view/current_department.dart';

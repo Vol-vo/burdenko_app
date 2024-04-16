@@ -11,7 +11,7 @@ class Dnevnichki extends StatefulWidget {
 class DnevnichkiState extends State<Dnevnichki> {
 
 
-  late Logbook dnevnichkiGeneral;
+  late Department dnevnichkiGeneral;
 
   @override
   void didChangeDependencies() {
@@ -21,10 +21,10 @@ class DnevnichkiState extends State<Dnevnichki> {
       log("Args is null");
       return;
     }
-    if (args is! Logbook) {
+    if (args is! Department) {
       log("Arguments is not DnevnickiGeneral");
     }
-    dnevnichkiGeneral = args as Logbook;
+    dnevnichkiGeneral = args as Department;
   }
   @override
   Widget build(BuildContext context) {

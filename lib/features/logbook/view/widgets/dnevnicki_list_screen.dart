@@ -4,7 +4,7 @@ import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 class DnevnickiListScreen extends StatelessWidget {
   DnevnickiListScreen({super.key});
 
-  final List<Logbook> dnevnickiList = [];
+  final List<Department> dnevnickiList = [];
 
   @override
   Widget build(BuildContext context) {

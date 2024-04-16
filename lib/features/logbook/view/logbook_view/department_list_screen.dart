@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:burdenko/features/logbook/data/logbook.dart';
+import 'package:burdenko/features/logbook/models/department.dart';
 import 'package:burdenko/features/logbook/repositories/repositories_logbook_list.dart';
 
 class DepartmentListScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class DepartmentListScreen extends StatefulWidget {
 class _DepartmentListScreenState extends State<DepartmentListScreen> {
   final repository = RepositoriesLogBookList();
 
-  late final Completer<List<Logbook>> logbookList;
+  late final Completer<List<Department>> logbookList;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _DepartmentListScreenState extends State<DepartmentListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Дневники", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700)),
+        title: const Text("Отделения", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700)),
       ),
       body: SingleChildScrollView(
           child: SafeArea(
@@ -59,8 +59,8 @@ class _DepartmentListScreenState extends State<DepartmentListScreen> {
 }
 
 class Button extends StatelessWidget{
-  const Button({super.key, required Logbook e}) : _logbook = e;
-  final Logbook _logbook;
+  const Button({super.key, required Department e}) : _logbook = e;
+  final Department _logbook;
   @override
   Widget build(BuildContext context){
     return Padding(

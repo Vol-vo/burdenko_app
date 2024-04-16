@@ -1,1 +1,1 @@
-export 'logbook.dart';
+export '../models/department.dart';

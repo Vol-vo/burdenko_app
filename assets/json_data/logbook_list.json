@@ -1,13 +1,14 @@
 [
   {
     "title" : "Пульмонология",
-    "navigator" : "/currentLogbook",
+    "navigator" : "/currentDepartment",
     "image" : "",
     "params" : [
       {
         "title" : "Температура",
         "required" : true,
         "isOneValue" : true,
+        "inLogbook" : false,
         "hints" : [
           {
             "name" : "36,6", "value" : "36,6"
@@ -21,6 +22,7 @@
         "title" : "Время",
         "required" : true,
         "isOneValue" : false,
+        "inLogbook" : true,
         "hints" : [
           {
             "name" :  "10:00", "value" :  "10:00"
@@ -34,13 +36,14 @@
   },
   {
     "title" : "Нефрология",
-    "navigator" : "/currentLogbook",
+    "navigator" : "/currentDepartment",
     "image" : "",
     "params" : [
       {
         "title" : "Температура",
         "required" : true,
         "isOneValue" : true,
+        "inLogbook" : true,
         "hints" : [
           {
             "name" : "36,6", "value" : "36,6"
@@ -54,6 +57,7 @@
         "title" : "Время",
         "required" : true,
         "isOneValue" : true,
+        "inLogbook" : true,
         "hints" : [
           {
             "name" :  "10:00", "value" :  "10:00"

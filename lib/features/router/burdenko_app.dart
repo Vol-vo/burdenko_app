@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/theme/theme.dart';
 import 'package:burdenko/features/router/routes.dart';
 
 final rootKey = GlobalKey<NavigatorState>();
@@ -14,7 +13,6 @@ class BurdenkoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Burdenko',
       routes: routes,
-      theme: lightTheme,
     );
   }
 }

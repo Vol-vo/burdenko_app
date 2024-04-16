@@ -3,5 +3,6 @@ import 'package:burdenko/features/logbook/view/export_view_all.dart';
 final routes = {
   "/" : (context) => const MainScreen(),
   "/department" : (context) => const DepartmentListScreen(),
-  "/currentLogbook" : (context) => const CurrentLogbook()
+  "/logbook" : (context) => const InitialInspection(),
+  "/currentDepartment" : (context) => const CurrentDepartment()
 };

@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 import 'package:burdenko/features/logbook/models/hints.dart';
 import 'package:flutter/services.dart';
-import 'package:burdenko/features/logbook/data/logbook.dart';
+import 'package:burdenko/features/logbook/models/department.dart';
 import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 
 class RepositoriesLogBookList {
-  Future<List<Logbook>> getLogbookList(String fileString) async {
+  Future<List<Department>> getLogbookList(String fileString) async {
     final List<dynamic> listJson =
         jsonDecode(await rootBundle.loadString(fileString));
-    List<Logbook> logbookList = [];
+    List<Department> logbookList = [];
     for (int i = 0; i < listJson.length; i++) {
-      logbookList.add(Logbook(
+      logbookList.add(Department(
         title: listJson[i]["title"],
         navigator: listJson[i]["navigator"],
         image: listJson[i]["image"],
@@ -29,7 +29,8 @@ class RepositoriesLogBookList {
           title: params[i]["title"],
           hints: await _getHintsList(params[i]["hints"] as List<dynamic>),
           required: params[i]["required"],
-          isOneValue: params[i]["isOneValue"]
+          isOneValue: params[i]["isOneValue"],
+          inLogbook: params[i]["inLogbook"],
       ));
     }
     return selectableParameterList;
