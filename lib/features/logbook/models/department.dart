@@ -1,6 +1,6 @@
 import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 class Department{  //
-  final List<SelectableParameter> params;
+  List<SelectableParameter> params;
   late String title;
   late String image;
   late String navigator;
@@ -12,14 +12,16 @@ class Department{  //
     required this.params
   });
 
-  List<SelectableParameter> getCurrentParametersForLogbook(){
+  Department getCurrentDepartmentForLogbook(){
     List<SelectableParameter> currentParameters = [];
     for(var par in params){
       if (par.inLogbook) {
         currentParameters.add(par);
       }
     }
-    return currentParameters;
+    Department dep = Department(params: params, title: title, image: image, navigator: navigator);
+    dep.params = currentParameters;
+    return dep;
   }
 
 }

@@ -1,3 +1,5 @@
+import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
+import 'package:burdenko/features/logbook/models/data_for_send_and_build_docx.dart';
 import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -7,12 +9,12 @@ class InitialInspection extends StatefulWidget {
   const InitialInspection({super.key});
 
   @override
-  State<InitialInspection> createState() => _InitialInspectionState();
+  State<StatefulWidget> createState() => _InitialInspectionState();
 }
 
 class _InitialInspectionState extends State<InitialInspection> {
-  late List<SelectableParameter> _params;
-
+  late Department _department;
+  late DataForSendAndBuildDocx _dataForSendAndBuildDocx;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -21,23 +23,22 @@ class _InitialInspectionState extends State<InitialInspection> {
       log("Args is null");
       return;
     }
-    if (args is! List<SelectableParameter>) {
-      log("Arguments is not a List<SelectableParameter>");
+    if (args is! DataForSendAndBuildDocx) {
+      log("Arguments is not a DataForSendAndBuildDocx");
     }
-    _params = args as List<SelectableParameter>;
-
-
+    _dataForSendAndBuildDocx = args as DataForSendAndBuildDocx;
+    _department = _dataForSendAndBuildDocx.department;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: CustomAppBar(data: _dataForSendAndBuildDocx),
         body: SafeArea(
-            child: Column(
+            child: ListView(
             children: [
-              for (var widget in _params)
-                Params(parameter: widget)
+              for (var widget in _department.params)
+                Params(parameter: widget, department: _department)
             ],
           ),
         ));
@@ -46,7 +47,9 @@ class _InitialInspectionState extends State<InitialInspection> {
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
-  const CustomAppBar({super.key});
+  CustomAppBar({super.key, required DataForSendAndBuildDocx data}) : dataForSendAndBuildDocx = data;
+
+  DataForSendAndBuildDocx dataForSendAndBuildDocx;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -64,10 +67,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.arrow_back_ios_sharp),
             iconSize: 40),
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                "/departureParamsAndSendingOnEmail", 
+                arguments: dataForSendAndBuildDocx
+              );
+            },
             icon: const Icon(Icons.upload_file_sharp),
             iconSize: 40)
       ],
     ));
   }
 }
+

@@ -1,10 +1,13 @@
+import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 import 'package:flutter/material.dart';
+import 'package:burdenko/features/logbook/data/command_for_params.dart';
 
 class Params extends StatefulWidget {
-  Params({super.key, required this.parameter});
+  Params({super.key, required this.parameter, required this.department});
 
   late SelectableParameter parameter;
+  late Department department;
 
   @override
   State<Params> createState() => _Params();
@@ -15,10 +18,12 @@ class _Params extends State<Params> {
   void initState() {
     super.initState();
     parameter = widget.parameter;
+    department = widget.department;
   }
 
 
   late SelectableParameter parameter;
+  late Department department;
   TextEditingController controller = TextEditingController();
 
   @override
@@ -36,8 +41,9 @@ class _Params extends State<Params> {
                     controller.text = text;
                     parameter.setValue(text);
                   },
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder()
+                  decoration: InputDecoration(
+                    labelText: parameter.title,
+                      border: const OutlineInputBorder(),
                   ),
                 ),
               ),
@@ -46,17 +52,18 @@ class _Params extends State<Params> {
               onPressed: (){
                 showDialog(context: context, builder: (context){
                   return AlertDialog(
-                    content:  Wrap(  //TODO: вынести в отдельный класс
+                    content:  Wrap(
                       children: [
                         for (var hint in parameter.hints)
                           Padding(
                             padding: const EdgeInsets.all(3.0),
                             child: TextButton(
                               onPressed: () {
-                                parameter.setValue(hint.value);  //TODO: setValue заменить на AddValue
+                                parameter.addValue(command(hint.value));
                                 setState(() {
                                   controller.text = parameter.getValue();
                                 });
+
                               },
                               child: Text(hint.name,
                                   style:
@@ -65,6 +72,7 @@ class _Params extends State<Params> {
                           )
                       ],
                     ),
+
                   );
                 });
               },
@@ -76,5 +84,12 @@ class _Params extends State<Params> {
         ),
       ],
     );
+  }
+  String command(String command){
+    if(command.contains("\$")){
+      return CommandForParams().getValueFromCommand(command, department);
+    }else{
+      return command;
+    }
   }
 }

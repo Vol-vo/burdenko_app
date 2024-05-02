@@ -10,21 +10,22 @@ class SelectableParameter {
   });
 
   final String title;
-  final List<Hints> hints;
+  List<Hints> hints;
   final bool required;
   final bool isOneValue;
   final bool inLogbook;
   String _value = "";
 
-  /*
-  TODO: Изменить setValue на addValue и добавить setValue
-   */
 
-  void setValue(String newValue) {
+  void addValue(String newValue) {
     if (!isOneValue && _value.isNotEmpty) {
       _value += ", $newValue";
       return;
     }
+    _value = newValue;
+  }
+
+  void setValue(String newValue){
     _value = newValue;
   }
 

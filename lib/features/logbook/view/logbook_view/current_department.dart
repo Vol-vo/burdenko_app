@@ -1,3 +1,4 @@
+import 'package:burdenko/features/logbook/models/data_for_send_and_build_docx.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/models/department.dart';
@@ -6,7 +7,7 @@ class CurrentDepartment extends StatefulWidget {
   const CurrentDepartment({super.key});
 
   @override
-  _CurrentDepartmentState createState() => _CurrentDepartmentState();
+  State<StatefulWidget> createState() => _CurrentDepartmentState();
 }
 
 class _CurrentDepartmentState extends State<CurrentDepartment> {
@@ -43,7 +44,7 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, "/logbook",
-                          arguments: _department.params);
+                          arguments: DataForSendAndBuildDocx(department: _department, isLogbook: false));
                     },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -64,7 +65,11 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, "/logbook",
-                          arguments: _department.getCurrentParametersForLogbook());
+                          arguments: DataForSendAndBuildDocx(
+                              department: _department.getCurrentDepartmentForLogbook(),
+                              isLogbook: true
+                          )
+                      );
                     },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -78,7 +83,8 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                         child: Text("Ежедневный осмотр",
                             style: TextStyle(
                                 fontSize: 40)))),
-              )
+              ),
+
             ],
           ),
         ),
