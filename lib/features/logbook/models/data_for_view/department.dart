@@ -1,4 +1,4 @@
-import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
 class Department{  //
   List<SelectableParameter> params;
   late String title;

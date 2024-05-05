@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
-import 'package:burdenko/features/logbook/models/hints.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/hints.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
 import 'package:flutter/services.dart';
-import 'package:burdenko/features/logbook/models/department.dart';
-import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
 
 class RepositoriesLogBookList {
   Future<List<Department>> getLogbookList(String fileString) async {

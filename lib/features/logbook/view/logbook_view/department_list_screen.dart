@@ -1,6 +1,6 @@
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:burdenko/features/logbook/models/department.dart';
 import 'package:burdenko/features/logbook/repositories/repositories_logbook_list.dart';
 
 class DepartmentListScreen extends StatefulWidget {

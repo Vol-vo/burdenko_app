@@ -1,5 +1,5 @@
-import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
-import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
 import 'package:flutter/material.dart';
 import 'package:burdenko/features/logbook/data/command_for_params.dart';
 

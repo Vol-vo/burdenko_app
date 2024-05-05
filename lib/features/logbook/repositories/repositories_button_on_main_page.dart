@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:burdenko/features/logbook/models/button_on_main_page.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/button_on_main_page.dart';
 
 class RepositoriesButtonOnMainPage{
 

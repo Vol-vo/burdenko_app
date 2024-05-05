@@ -1,4 +1,4 @@
-import 'package:burdenko/features/logbook/models/hints.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/hints.dart';
 
 class SelectableParameter {
   SelectableParameter({

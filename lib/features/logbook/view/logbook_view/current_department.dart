@@ -1,7 +1,7 @@
-import 'package:burdenko/features/logbook/models/data_for_send_and_build_docx.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
-import 'package:burdenko/features/logbook/models/department.dart';
 
 class CurrentDepartment extends StatefulWidget {
   const CurrentDepartment({super.key});

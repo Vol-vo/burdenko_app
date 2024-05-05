@@ -1,6 +1,5 @@
-import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
-import 'package:burdenko/features/logbook/models/data_for_send_and_build_docx.dart';
-import 'package:burdenko/features/logbook/models/selectable_parameter.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/view/widgets/params_view.dart';

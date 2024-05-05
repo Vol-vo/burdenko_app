@@ -1,5 +1,5 @@
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
 
 class DnevnickiListScreen extends StatelessWidget {
   DnevnickiListScreen({super.key});

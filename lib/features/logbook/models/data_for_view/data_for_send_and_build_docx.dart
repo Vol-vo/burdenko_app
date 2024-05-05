@@ -1,4 +1,4 @@
-import 'package:burdenko/features/logbook/data/export_dnevnicki_general.dart';
+import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 
 class DataForSendAndBuildDocx{
   DataForSendAndBuildDocx({required this.department, required this.isLogbook});
