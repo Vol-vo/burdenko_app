@@ -8,3 +8,4 @@ class SendDataState extends SendAndLoadingFileState {
 }
 class BuildingDocxState extends SendAndLoadingFileState {}
 class LoadingDocxState extends SendAndLoadingFileState {}
+class DefaultState extends SendAndLoadingFileState {}

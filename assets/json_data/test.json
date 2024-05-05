@@ -1,0 +1,25 @@
+{  "direction": "NEPHROLOGY",
+  "examinationType": "DAILY",
+  "ExaminationData": {
+    "hospitalDay": "День 3",
+    "date": "2024-04-24",
+    "time": "10:00",
+    "temperature": "37.2",
+    "heartRate": "80",
+    "respiratoryRate": "18",
+    "bloodPressure": "120/80",
+    "oxygenSaturation": "98",
+    "severityCondition": "Средняя",
+    "wellBeing": "Удовлетворительное",
+    "complaints": "Боль в пояснице",
+    "skin": "Чистые, сухие",
+    "catarrhalManifestations": "Отсутствуют",
+    "expiration": "В норме",
+    "lung": "Везикулярное дыхание",
+    "heartSounds": "Ритмичные",
+    "abdomen": "Мягкий, безболезненный",
+    "stool": "Нормальный",
+    "urination": "Регулярное",
+    "therapyChanges": "Добавлено лекарство X"
+  }
+}

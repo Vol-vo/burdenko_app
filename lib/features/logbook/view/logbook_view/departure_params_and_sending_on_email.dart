@@ -46,16 +46,17 @@ class _DepartureParamsAndSendingOnEmailState
             children: [
               ElevatedButton(
                 onPressed: () {
-                  sendAndLoadingFileBloc.add(SendDataAndLoadingFile(_dataForSendAndBuildDocx));
+                  sendAndLoadingFileBloc.add(SendDataAndLoadingFileEvent(_dataForSendAndBuildDocx));
                 },
-                child: const Text("Сгенерировать и скачать файл"),
+                child: const Text("Сформировать и загрузить документ"),
               ),
               BlocBuilder<SendAndLoadingFileBloc, SendAndLoadingFileState>(
                 bloc: sendAndLoadingFileBloc,
                 builder: (context, state) {
                   return Column(
                     children: [
-                      if (state is SendDataState)
+                      if (state is DefaultState) const Text(" ")
+                      else if (state is SendDataState)
                         const Text(
                             "Данные отправляются на сервер для генерации документа")
                       else if (state is BuildingDocxState)

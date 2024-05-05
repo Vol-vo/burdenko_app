@@ -91,7 +91,6 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
       ),
     );
   }
-
 }
 
 class CustomAppBarCurrentDepartment extends StatelessWidget
