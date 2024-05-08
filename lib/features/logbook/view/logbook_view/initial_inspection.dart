@@ -44,15 +44,23 @@ class _InitialInspectionState extends State<InitialInspection> {
   }
 }
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
-  CustomAppBar({super.key, required DataForSendAndBuildDocx data}) : dataForSendAndBuildDocx = data;
+  const CustomAppBar({super.key, required DataForSendAndBuildDocx data}) : dataForSendAndBuildDocx = data;
 
-  DataForSendAndBuildDocx dataForSendAndBuildDocx;
+  final DataForSendAndBuildDocx dataForSendAndBuildDocx;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,11 +75,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             iconSize: 40),
         IconButton(
             onPressed: () {
-              Navigator.pushNamed(
-                context,
-                "/departureParamsAndSendingOnEmail", 
-                arguments: dataForSendAndBuildDocx
-              );
+              if (widget.dataForSendAndBuildDocx.isReadyForSendAndBuildDocx()) {
+                Navigator.pushNamed(
+                    context,
+                    "/departureParamsAndSendingOnEmail",
+                    arguments: widget.dataForSendAndBuildDocx
+                );
+              }else{
+
+              }
             },
             icon: const Icon(Icons.upload_file_sharp),
             iconSize: 40)

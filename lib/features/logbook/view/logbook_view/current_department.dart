@@ -34,11 +34,11 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
         currentDepartment: _department,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
                 height:
                 MediaQuery.of(context).size.height * 0.1,
                 child: ElevatedButton(
@@ -59,7 +59,10 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                             style: TextStyle(
                                 fontSize: 40))),),
               ),
-              SizedBox(
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
                 height:
                 MediaQuery.of(context).size.height * 0.1,
                 child: ElevatedButton(
@@ -84,9 +87,9 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                             style: TextStyle(
                                 fontSize: 40)))),
               ),
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -95,9 +98,9 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
 
 class CustomAppBarCurrentDepartment extends StatelessWidget
     implements PreferredSizeWidget {
-  CustomAppBarCurrentDepartment({super.key, required this.currentDepartment});
+  const CustomAppBarCurrentDepartment({super.key, required this.currentDepartment});
 
-  late Department currentDepartment;
+  final Department currentDepartment;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
