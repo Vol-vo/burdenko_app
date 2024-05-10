@@ -42,8 +42,9 @@ class _DepartureParamsAndSendingOnEmailState
       ],
       child: SafeArea(
         child: Scaffold(
-          body: Column(
+          body: ListView(
             children: [
+              for (int i = 0; i < _dataForSendAndBuildDocx.department.params.length; i++) Text("${_dataForSendAndBuildDocx.department.params[i].title} ${_dataForSendAndBuildDocx.department.params[i].getValue()}"),
               ElevatedButton(
                 onPressed: () {
                   sendAndLoadingFileBloc.add(SendDataAndLoadingFileEvent(_dataForSendAndBuildDocx));
@@ -65,7 +66,7 @@ class _DepartureParamsAndSendingOnEmailState
                         const Text("Скачиваем!")
                       else
                         const Text("Внимание, произошла ошибка")
-        
+
                     ],
                   );
                 },

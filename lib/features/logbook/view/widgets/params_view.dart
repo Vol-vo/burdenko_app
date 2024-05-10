@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:burdenko/features/logbook/data/command_for_params.dart';
 
 class Params extends StatefulWidget {
-  Params({super.key, required this.parameter, required this.department});
+  const Params({super.key, required this.parameter, required this.department});
 
-  late SelectableParameter parameter;
-  late Department department;
+  final SelectableParameter parameter;
+  final Department department;
 
   @override
   State<Params> createState() => _Params();
@@ -37,10 +37,11 @@ class _Params extends State<Params> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: controller,
-                  onFieldSubmitted: (text){
+                  onChanged: (text){
                     controller.text = text;
                     parameter.setValue(text);
                   },
+
                   decoration: InputDecoration(
                     labelText: parameter.title,
                       border: const OutlineInputBorder(),
