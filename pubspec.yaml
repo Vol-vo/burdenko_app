@@ -89,8 +89,8 @@ flutter:
     - assets/images/Pulmo3.png
     - assets/images/Gastro.png
     - assets/images/Gastro2.png
-    - assets/json_data/button_on_main_screen.json
     - assets/json_data/logbook_list.json
+    - assets/json_data/test_logbook.json
     - assets/icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

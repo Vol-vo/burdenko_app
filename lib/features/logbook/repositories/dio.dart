@@ -6,7 +6,7 @@ final dio = _initDio();
 Dio _initDio() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: 'https://min-api.cryptocompare.com/',
+      baseUrl: 'http://94.198.217.85:8080/',
     ),
   );
   dio.interceptors.add(PrettyDioLogger());

@@ -20,7 +20,7 @@ class _DepartmentListScreenState extends State<DepartmentListScreen> {
     super.initState();
     logbookList = Completer();
     repository
-        .getLogbookList('assets/json_data/logbook_list.json')
+        .getLogbookList('assets/json_data/test_logbook.json')
         .then((value) {
       logbookList.complete(value);
     });

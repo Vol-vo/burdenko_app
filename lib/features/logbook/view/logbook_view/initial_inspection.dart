@@ -36,8 +36,13 @@ class _InitialInspectionState extends State<InitialInspection> {
         body: SafeArea(
             child: ListView(
             children: [
+              ElevatedButton(
+                  onPressed: (){
+                  },
+                  child: const Text("Вставить базовые значения")
+              ),
               for (var widget in _department.params)
-                Params(parameter: widget, department: _department)
+                Params(parameter: widget, department: _department,)
             ],
           ),
         ));
@@ -75,7 +80,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             iconSize: 40),
         IconButton(
             onPressed: () {
-              if (widget.dataForSendAndBuildDocx.isReadyForSendAndBuildDocx()) {
+              if (!widget.dataForSendAndBuildDocx.isReadyForSendAndBuildDocx()) {
                 Navigator.pushNamed(
                     context,
                     "/departureParamsAndSendingOnEmail",

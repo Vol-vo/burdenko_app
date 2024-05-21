@@ -14,8 +14,8 @@ class DepartureParamsAndSendingOnEmail extends StatefulWidget {
 
 class _DepartureParamsAndSendingOnEmailState
     extends State<DepartureParamsAndSendingOnEmail> {
-
   late DataForSendAndBuildDocx _dataForSendAndBuildDocx;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -28,51 +28,49 @@ class _DepartureParamsAndSendingOnEmailState
       log("Arguments is not a DataForSendAndBuildDocx");
     }
     _dataForSendAndBuildDocx = args as DataForSendAndBuildDocx;
-
   }
 
   @override
   Widget build(BuildContext context) {
-    final sendAndLoadingFileBloc = SendAndLoadingFileBloc();
-
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<SendAndLoadingFileBloc>(
-            create: (context) => sendAndLoadingFileBloc)
-      ],
-      child: SafeArea(
-        child: Scaffold(
-          body: ListView(
-            children: [
-              for (int i = 0; i < _dataForSendAndBuildDocx.department.params.length; i++) Text("${_dataForSendAndBuildDocx.department.params[i].title} ${_dataForSendAndBuildDocx.department.params[i].getValue()}"),
-              ElevatedButton(
-                onPressed: () {
-                  sendAndLoadingFileBloc.add(SendDataAndLoadingFileEvent(_dataForSendAndBuildDocx));
-                },
-                child: const Text("Сформировать и загрузить документ"),
-              ),
-              BlocBuilder<SendAndLoadingFileBloc, SendAndLoadingFileState>(
-                bloc: sendAndLoadingFileBloc,
-                builder: (context, state) {
-                  return Column(
-                    children: [
-                      if (state is DefaultState) const Text(" ")
-                      else if (state is SendDataState)
-                        const Text(
-                            "Данные отправляются на сервер для генерации документа")
-                      else if (state is BuildingDocxState)
-                        const Text("Формируем документ")
-                      else if (state is LoadingDocxState)
-                        const Text("Скачиваем!")
-                      else
-                        const Text("Внимание, произошла ошибка")
-
-                    ],
-                  );
-                },
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
+          children: [
+            for (int i = 0;
+                i < _dataForSendAndBuildDocx.department.params.length;
+                i++)
+              Text(
+                  "${_dataForSendAndBuildDocx.department.params[i].title} ${_dataForSendAndBuildDocx.department.params[i].getValue()}"),
+            ElevatedButton(
+              onPressed: () {
+                final sendAndLoadingFileBloc =
+                    context.read<SendAndLoadingFileBloc>();
+                sendAndLoadingFileBloc
+                    .add(SendDataAndLoadingFileEvent(_dataForSendAndBuildDocx));
+              },
+              child: const Text("Сформировать и загрузить документ"),
+            ),
+            BlocBuilder<SendAndLoadingFileBloc, SendAndLoadingFileState>(
+              builder: (context, state) {
+                var bloc = context.watch<SendAndLoadingFileBloc>();
+                return Column(
+                  children: [
+                    if (bloc.state is DefaultState)
+                      const Text(" ")
+                    else if (bloc.state is SendDataState)
+                      const Text(
+                          "Данные отправляются на сервер для генерации документа")
+                    else if (bloc.state is BuildingDocxState)
+                      const Text("Формируем документ")
+                    else if (bloc.state is LoadingDocxState)
+                      const Text("Скачиваем!")
+                    else
+                      const Text("Внимание, произошла ошибка")
+                  ],
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

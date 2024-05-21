@@ -1,13 +1,14 @@
 import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/logbook/data/command_for_params.dart';
+import 'package:burdenko/features/logbook/models/calculators/command_for_params.dart';
 
 class Params extends StatefulWidget {
   const Params({super.key, required this.parameter, required this.department});
 
   final SelectableParameter parameter;
   final Department department;
+
 
   @override
   State<Params> createState() => _Params();
@@ -19,6 +20,7 @@ class _Params extends State<Params> {
     super.initState();
     parameter = widget.parameter;
     department = widget.department;
+
   }
 
 
@@ -41,7 +43,6 @@ class _Params extends State<Params> {
                     controller.text = text;
                     parameter.setValue(text);
                   },
-
                   decoration: InputDecoration(
                     labelText: parameter.title,
                       border: const OutlineInputBorder(),
@@ -64,7 +65,6 @@ class _Params extends State<Params> {
                                 setState(() {
                                   controller.text = parameter.getValue();
                                 });
-
                               },
                               child: Text(hint.name,
                                   style:

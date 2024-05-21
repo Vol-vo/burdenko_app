@@ -88,7 +88,6 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
                                 fontSize: 40)))),
               ),
             ),
-
           ],
         ),
       ),
