@@ -1,12 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
 import 'package:burdenko/features/logbook/repositories/dio.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 
 part 'send_and_loading_file_event.dart';
 part 'send_and_loading_file_state.dart';
@@ -19,19 +20,23 @@ class SendAndLoadingFileBloc extends Bloc<SendAndLoadingFileEvent, SendAndLoadin
   _onSendData(event, emit) async {
     DataForSendAndBuildDocx data = event.getDataForSendAndBuildDocx();
     emit(SendDataState());
-    final response = await dio.post("client/data", data: _getStringJson(data));
-    File file = await _saveDocxOnMemory(response.data, _getNameForFile(data.department.params));
-    emit(FileIsReadyState(file: file));
+    final response = await dio.post("client/data", data: _getStringJson(data), options: Options(responseType: ResponseType.bytes));
+      await _saveDocxOnMemory(response.data, _getNameForFile(data.department.params));
+      emit(FileIsReadyState());
+
   }
 
-  Future<File> _saveDocxOnMemory(String content, String nameFile) async{
-    final directory = await path_provider.getApplicationDocumentsDirectory();
-    final path = "${directory.path}/$nameFile.docx";
-    final file = File(path);
-    file.create();
-    file.writeAsString(content);
-    log(file.existsSync().toString());
-    return file;
+  Future<void> _saveDocxOnMemory(Uint8List content, String nameFile) async{
+    if(Platform.isAndroid || Platform.isIOS) {
+      await FilePicker.platform.saveFile(
+          dialogTitle: 'Пожалуйста, назовите ваш файл: ',
+          fileName: '$nameFile.doc',
+          bytes: content,
+
+
+      );
+    }
+
   }
 
   String _getNameForFile(List<SelectableParameter> params){
@@ -42,7 +47,6 @@ class SendAndLoadingFileBloc extends Bloc<SendAndLoadingFileEvent, SendAndLoadin
     }
     return "Без названия";
   }
-
 
 
   String _getStringJson(DataForSendAndBuildDocx data) {

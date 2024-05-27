@@ -21,7 +21,6 @@ class Wrapper extends StatelessWidget{
 class BurdenkoApp extends StatelessWidget {
   const BurdenkoApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

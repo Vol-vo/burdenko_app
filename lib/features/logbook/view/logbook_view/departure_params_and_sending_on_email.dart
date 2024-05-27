@@ -60,10 +60,8 @@ class _DepartureParamsAndSendingOnEmailState
                     else if (bloc.state is SendDataState)
                       const Text(
                           "Данные отправляются на сервер для генерации документа")
-                    else if (bloc.state is BuildingDocxState)
-                      const Text("Формируем документ")
-                    else if (bloc.state is LoadingDocxState)
-                      const Text("Скачиваем!")
+                    else if (bloc.state is FileIsReadyState)
+                      const Text("Файл успешно скачен")
                     else
                       const Text("Внимание, произошла ошибка")
                   ],

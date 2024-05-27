@@ -8,9 +8,4 @@ class SendDataState extends SendAndLoadingFileState {
 class BuildingDocxState extends SendAndLoadingFileState {}
 class LoadingDocxState extends SendAndLoadingFileState {}
 class DefaultState extends SendAndLoadingFileState {}
-class FileIsReadyState extends SendAndLoadingFileState{
-  FileIsReadyState({required this.file});
-
-  final File file;
-
-}
+class FileIsReadyState extends SendAndLoadingFileState{}

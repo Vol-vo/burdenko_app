@@ -1,11 +1,11 @@
 [
   {
-    "title": "Педиатрическое отделение",
+    "title": "Pediatria",
     "navigator": "/currentDepartment",
     "image": "",
     "params": [
       {
-        "title": "Дата рождения:",
+        "title": "date of birthdays:",
         "required": true,
         "isOneValue": true,
         "inLogbook": true,
