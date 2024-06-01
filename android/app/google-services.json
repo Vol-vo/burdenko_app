@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666378639713",
+    "project_id": "burdenko-22922",
+    "storage_bucket": "burdenko-22922.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666378639713:android:9d1ae57b4f9bf788214d20",
+        "android_client_info": {
+          "package_name": "com.example.burdenko"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQR3MUWO3wYF627X-U_bAN64zzoOyBHOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

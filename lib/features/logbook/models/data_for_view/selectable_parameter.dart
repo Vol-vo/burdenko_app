@@ -17,7 +17,7 @@ class SelectableParameter {
   final bool isOneValue;
   final bool inLogbook;
   String _value = "";
-  final List<BaseValueForParameter> baseValues;
+  final List<BaseValueForParameter>? baseValues;
 
 
   void addValue(String newValue) {

@@ -1,3 +1,4 @@
+import 'package:burdenko/features/logbook/models/bloc/write_base_value_in_params/write_base_value_in_params_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:burdenko/features/router/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,8 @@ class Wrapper extends StatelessWidget{
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider<SendAndLoadingFileBloc>(
-          create: (context) => SendAndLoadingFileBloc())
+          create: (context) => SendAndLoadingFileBloc()),
+      BlocProvider<WriteBaseValueInParamsBloc>(create: (context) => WriteBaseValueInParamsBloc())
     ], child: const BurdenkoApp());
   }
 }

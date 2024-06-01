@@ -1,8 +1,10 @@
+import 'package:burdenko/features/logbook/models/bloc/write_base_value_in_params/write_base_value_in_params_bloc.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/view/widgets/params_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InitialInspection extends StatefulWidget {
   const InitialInspection({super.key});
@@ -38,11 +40,16 @@ class _InitialInspectionState extends State<InitialInspection> {
             children: [
               ElevatedButton(
                   onPressed: (){
+                    final writeBaseValueInParams =
+                    context.read<WriteBaseValueInParamsBloc>();
+                    writeBaseValueInParams
+                        .add(WriteValueInParamsEvent(_department.params));
+
                   },
                   child: const Text("Вставить базовые значения")
               ),
               for (var widget in _department.params)
-                Params(parameter: widget, department: _department,)
+                Params(parameter: widget, department: _department)
             ],
           ),
         ));
