@@ -2,6 +2,7 @@ import 'package:burdenko/features/logbook/models/bloc/write_base_value_in_params
 import 'package:flutter/material.dart';
 import 'package:burdenko/features/router/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../logbook/models/bloc/send_and_loading_file/send_and_loading_file_bloc.dart';
 
@@ -26,6 +27,7 @@ class BurdenkoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: FToastBuilder(),
       navigatorKey: rootKey,
       debugShowCheckedModeBanner: false,
       title: 'Burdenko',

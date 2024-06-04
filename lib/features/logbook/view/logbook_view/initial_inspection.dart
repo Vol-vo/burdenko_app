@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/view/widgets/params_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class InitialInspection extends StatefulWidget {
   const InitialInspection({super.key});
@@ -73,6 +74,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -87,14 +90,22 @@ class _CustomAppBarState extends State<CustomAppBar> {
             iconSize: 40),
         IconButton(
             onPressed: () {
-              if (!widget.dataForSendAndBuildDocx.isReadyForSendAndBuildDocx()) {
+              if (widget.dataForSendAndBuildDocx.isReadyForSendAndBuildDocx()) {
                 Navigator.pushNamed(
                     context,
                     "/departureParamsAndSendingOnEmail",
                     arguments: widget.dataForSendAndBuildDocx
                 );
               }else{
+                Fluttertoast.showToast(
+                  gravity: ToastGravity.TOP,
+                  msg: "Вы не вписали обязательные значения",
+                  timeInSecForIosWeb: 10,
 
+                  backgroundColor: Colors.blue,
+                  fontSize: 20
+
+                );
               }
             },
             icon: const Icon(Icons.upload_file_sharp),
