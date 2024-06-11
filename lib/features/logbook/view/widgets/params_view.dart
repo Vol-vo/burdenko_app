@@ -36,6 +36,7 @@ class _Params extends State<Params> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Padding(

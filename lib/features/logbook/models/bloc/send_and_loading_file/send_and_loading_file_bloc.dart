@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
 import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
@@ -7,7 +6,6 @@ import 'package:burdenko/features/logbook/repositories/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 part 'send_and_loading_file_event.dart';
 
@@ -23,10 +21,7 @@ class SendAndLoadingFileBloc
     DataForSendAndBuildDocx data = event.getDataForSendAndBuildDocx();
     emit(SendDataState());
     if (kIsWeb) {
-      const String url = 'http://example.com';
-      String encodedJsonData = Uri.encodeComponent(_getStringJson(data));
-      String finalUrl = '$url?json=$encodedJsonData';
-      launch(finalUrl);
+
     } else {
       final response = await dio.post("client/data",
           data: _getStringJson(data),
@@ -36,6 +31,7 @@ class SendAndLoadingFileBloc
       emit(FileIsReadyState());
     }
   }
+
 
   Future<void> _saveDocxOnMemory(Uint8List content, String nameFile) async {
     await FilePicker.platform.saveFile(

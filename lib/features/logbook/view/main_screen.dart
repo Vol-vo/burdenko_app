@@ -14,6 +14,7 @@ class _MainScreenState extends State<MainScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 width: MediaQuery
@@ -34,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
+
                   width:
                   MediaQuery
                       .of(context)

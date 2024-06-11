@@ -39,53 +39,48 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height:
-                MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.1,
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/logbook",
-                          arguments: DataForSendAndBuildDocx(department: _department, isLogbook: false));
-                    },
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/logbook",
+                        arguments: DataForSendAndBuildDocx(
+                            department: _department, isLogbook: false));
+                  },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       // Border
-                      borderRadius:
-                      BorderRadius.circular(18.0),
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
                   ),
-                    child: const FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text("Первичный осмотр",
-                            style: TextStyle(
-                                fontSize: 40))),),
+                  child: const FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text("Первичный осмотр",
+                          style: TextStyle(fontSize: 40))),
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height:
-                MediaQuery.of(context).size.height * 0.1,
+                height: MediaQuery.of(context).size.height * 0.1,
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, "/logbook",
                           arguments: DataForSendAndBuildDocx(
-                              department: _department.getCurrentDepartmentForLogbook(),
-                              isLogbook: true
-                          )
-                      );
+                              department:
+                                  _department.getCurrentDepartmentForLogbook(),
+                              isLogbook: true));
                     },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      // Border
-                      borderRadius:
-                      BorderRadius.circular(18.0),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        // Border
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
                     ),
-                  ),
                     child: const FittedBox(
                         fit: BoxFit.fitWidth,
                         child: Text("Ежедневный осмотр",
-                            style: TextStyle(
-                                fontSize: 40)))),
+                            style: TextStyle(fontSize: 40)))),
               ),
             ),
           ],
@@ -97,7 +92,8 @@ class _CurrentDepartmentState extends State<CurrentDepartment> {
 
 class CustomAppBarCurrentDepartment extends StatelessWidget
     implements PreferredSizeWidget {
-  const CustomAppBarCurrentDepartment({super.key, required this.currentDepartment});
+  const CustomAppBarCurrentDepartment(
+      {super.key, required this.currentDepartment});
 
   final Department currentDepartment;
 

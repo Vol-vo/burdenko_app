@@ -35,6 +35,7 @@ class _DepartmentListScreenState extends State<DepartmentListScreen> {
       body: SingleChildScrollView(
           child: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
