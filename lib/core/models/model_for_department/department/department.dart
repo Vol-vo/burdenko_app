@@ -1,14 +1,18 @@
-import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+import '../selectable_parameter/selectable_parameter.dart';
+
+part 'department.g.dart';
+
+@JsonSerializable()
 class Department{  //
   List<SelectableParameter> params;
   late String title;
-  late String image;
   late String navigator;
 
   Department({
     required this.title,
     required this.navigator,
-    required this.image,
     required this.params
   });
 
@@ -19,10 +23,13 @@ class Department{  //
         currentParameters.add(par);
       }
     }
-    Department dep = Department(params: params, title: title, image: image, navigator: navigator);
+    Department dep = Department(params: params, title: title, navigator: navigator);
     dep.params = currentParameters;
     return dep;
   }
 
+  factory Department.fromJson(Map<String, dynamic> json) => _$DepartmentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DepartmentToJson(this);
 
 }

@@ -1,6 +1,11 @@
-import 'package:burdenko/features/logbook/models/data_for_view/base_value_for_parameter.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/hints.dart';
+import 'package:burdenko/core/models/model_for_department/base_value_for_parameter/base_value_for_parameter.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import '../hints/hints.dart';
+
+part 'selectable_parameter.g.dart';
+
+@JsonSerializable()
 class SelectableParameter {
   SelectableParameter({
     required this.title,
@@ -8,7 +13,7 @@ class SelectableParameter {
     required this.required,
     required this.isOneValue,
     required this.inLogbook,
-    required this.baseValues
+    this.baseValues
   });
 
   final String title;
@@ -17,7 +22,8 @@ class SelectableParameter {
   final bool isOneValue;
   final bool inLogbook;
   String _value = "";
-  final List<BaseValueForParameter>? baseValues;
+  @JsonKey(name: "baseValue")
+  List<BaseValueForParameter>? baseValues;
 
 
   void addValue(String newValue) {
@@ -35,4 +41,12 @@ class SelectableParameter {
   String getValue() {
     return _value;
   }
+
+  void clearValue(){
+    _value = "";
+  }
+
+  factory SelectableParameter.fromJson(Map<String, dynamic> json) => _$SelectableParameterFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SelectableParameterToJson(this);
 }

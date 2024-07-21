@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/router/burdenko_app.dart';
-import 'package:burdenko/features/router/logger.dart';
+
+import 'core/navigation/router/burdenko_app.dart';
+import 'core/navigation/router/logger.dart';
 
 void main() {
   runZonedGuarded(() => runApp(const Wrapper()), (error, stack) {

@@ -1,11 +1,11 @@
-import 'dart:convert';
 import 'package:bloc/bloc.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
-import 'package:burdenko/features/logbook/repositories/dio.dart';
+import 'package:burdenko/core/models/model_for_department/data_for_send_and_build_docx/data_for_send_and_build_docx.dart';
+import 'package:burdenko/core/data/dto/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+
+import '../../../../../core/models/model_for_department/selectable_parameter/selectable_parameter.dart';
 
 part 'send_and_loading_file_event.dart';
 
@@ -19,17 +19,17 @@ class SendAndLoadingFileBloc
 
   _onSendData(event, emit) async {
     DataForSendAndBuildDocx data = event.getDataForSendAndBuildDocx();
-    emit(SendDataState());
     if (kIsWeb) {
 
     } else {
       final response = await dio.post("client/data",
-          data: _getStringJson(data),
+          data: data.toJson(),
           options: Options(responseType: ResponseType.bytes));
       await _saveDocxOnMemory(
           response.data, _getNameForFile(data.department.params));
       emit(FileIsReadyState());
     }
+    emit(SendDataState());
   }
 
 
@@ -48,28 +48,5 @@ class SendAndLoadingFileBloc
       }
     }
     return "Без названия";
-  }
-
-  String _getStringJson(DataForSendAndBuildDocx data) {
-    Map<String, dynamic> mainMap = {};
-    mainMap["direction"] = data.department.title;
-    mainMap["examinationType"] = _getExaminationType(data.isLogbook);
-    mainMap["ExaminationData"] = _getParamsJson(data.department.params);
-    return jsonEncode(mainMap);
-  }
-
-  Map<String, dynamic> _getParamsJson(List<SelectableParameter> arrayParams) {
-    Map<String, dynamic> mainMap = {};
-    for (int i = 0; i < arrayParams.length; i++) {
-      mainMap[arrayParams[i].title] = arrayParams[i].getValue();
-    }
-    return mainMap;
-  }
-
-  String _getExaminationType(bool boolean) {
-    if (boolean) {
-      return "DAILY";
-    }
-    return "INITIAL";
   }
 }

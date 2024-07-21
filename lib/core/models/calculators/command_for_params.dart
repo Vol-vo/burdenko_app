@@ -1,5 +1,6 @@
-import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:intl/intl.dart';
+
+import '../model_for_department/department/department.dart';
 class CommandForParams{
   String getValueFromCommand(String params, Department department){
     switch (params){

@@ -1,11 +1,13 @@
-import 'package:burdenko/features/logbook/models/bloc/write_base_value_in_params/write_base_value_in_params_bloc.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
+import 'package:burdenko/core/models/model_for_department/data_for_send_and_build_docx/data_for_send_and_build_docx.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 import 'package:burdenko/features/logbook/view/widgets/params_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../../../core/models/model_for_department/department/department.dart';
+import '../../bloc/clear_params/clear_params_bloc.dart';
+import '../../bloc/write_base_value_in_params/write_base_value_in_params_bloc.dart';
 
 class InitialInspection extends StatefulWidget {
   const InitialInspection({super.key});
@@ -39,6 +41,15 @@ class _InitialInspectionState extends State<InitialInspection> {
         body: SafeArea(
             child: ListView(
             children: [
+              ElevatedButton(
+                  onPressed: (){
+                    final clearParams =
+                    context.read<ClearParamsBloc>();
+                    clearParams
+                        .add(ClearEvent(params: _department.params));
+                  },
+                  child: const Text("Удалить все значения")
+              ),
               ElevatedButton(
                   onPressed: (){
                     final writeBaseValueInParams =
@@ -101,7 +112,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   gravity: ToastGravity.TOP,
                   msg: "Вы не вписали обязательные значения",
                   timeInSecForIosWeb: 10,
-
                   backgroundColor: Colors.blue,
                   fontSize: 20
 

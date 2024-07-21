@@ -1,7 +1,8 @@
-import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:burdenko/features/logbook/repositories/repositories_logbook_list.dart';
+
+import '../../../../core/data/service/repositories_logbook_list_local_json.dart';
+import '../../../../core/models/model_for_department/department/department.dart';
 
 class DepartmentListScreen extends StatefulWidget {
   const DepartmentListScreen({super.key});
@@ -11,7 +12,7 @@ class DepartmentListScreen extends StatefulWidget {
 }
 
 class _DepartmentListScreenState extends State<DepartmentListScreen> {
-  final repository = RepositoriesLogBookList();
+  final repository = RepositoriesLogBookListLocalJson();
 
   late final Completer<List<Department>> logbookList;
 

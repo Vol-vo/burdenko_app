@@ -1,8 +1,9 @@
-import 'package:burdenko/features/logbook/models/data_for_view/data_for_send_and_build_docx.dart';
+import 'package:burdenko/core/models/model_for_department/data_for_send_and_build_docx/data_for_send_and_build_docx.dart';
 import 'package:flutter/material.dart';
-import 'package:burdenko/features/logbook/models/bloc/send_and_loading_file/send_and_loading_file_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:developer';
+
+import '../../bloc/send_and_loading_file/send_and_loading_file_bloc.dart';
 
 class DepartureParamsAndSendingOnEmail extends StatefulWidget {
   const DepartureParamsAndSendingOnEmail({super.key});

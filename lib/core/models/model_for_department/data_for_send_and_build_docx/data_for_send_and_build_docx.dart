@@ -1,5 +1,10 @@
-import 'package:burdenko/features/logbook/models/data_for_view/department.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import '../department/department.dart';
+
+part 'data_for_send_and_build_docx.g.dart';
+
+@JsonSerializable()
 class DataForSendAndBuildDocx{
   DataForSendAndBuildDocx({required this.department, required this.isLogbook});
   late final Department department;
@@ -13,5 +18,9 @@ class DataForSendAndBuildDocx{
     }
     return true;
   }
+
+  factory DataForSendAndBuildDocx.fromJson(Map<String, dynamic> json) => _$DataForSendAndBuildDocxFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataForSendAndBuildDocxToJson(this);
 
 }

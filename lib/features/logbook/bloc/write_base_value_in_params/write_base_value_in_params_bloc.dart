@@ -1,7 +1,6 @@
-
-
 import 'package:bloc/bloc.dart';
-import 'package:burdenko/features/logbook/models/data_for_view/selectable_parameter.dart';
+
+import '../../../../../core/models/model_for_department/selectable_parameter/selectable_parameter.dart';
 
 part 'write_base_value_in_params_event.dart';
 part 'write_base_value_in_params_state.dart';
